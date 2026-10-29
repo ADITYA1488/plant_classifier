@@ -1,0 +1,36 @@
+{
+  "model": "torchvision ResNet-18 fine-tuned from ImageNet weights",
+  "framework": "PyTorch",
+  "source": "Kaggle training run",
+  "split": "60/20/20",
+  "seed": 42,
+  "device": "NVIDIA Tesla T4",
+  "automatic_mixed_precision": true,
+  "batch_size": 32,
+  "epochs_completed": 15,
+  "best_checkpoint_epoch": 12,
+  "best_validation_macro_f1": 0.995,
+  "dataset_images": 1706,
+  "train_images": 1024,
+  "validation_images": 341,
+  "test_images": 341,
+  "test_accuracy": 0.974,
+  "test_macro_f1": 0.972,
+  "per_class_split_counts": {
+    "Tabernaemontana litoralis": {"train": 191, "validation": 64, "test": 64},
+    "Variegated Tecoma": {"train": 80, "validation": 26, "test": 26},
+    "bougainvillea": {"train": 116, "validation": 38, "test": 38},
+    "copperleaf_plant": {"train": 43, "validation": 14, "test": 14},
+    "golden_net_bush": {"train": 68, "validation": 22, "test": 22},
+    "ixora_coccinea": {"train": 184, "validation": 62, "test": 62},
+    "lantana_camara": {"train": 136, "validation": 46, "test": 46},
+    "purple_false_erantheum": {"train": 98, "validation": 32, "test": 32},
+    "tecomaria_capensis": {"train": 55, "validation": 19, "test": 19},
+    "wild jasmine": {"train": 53, "validation": 18, "test": 18}
+  },
+  "notes": [
+    "Metric values are recorded at the precision printed in the Kaggle notebook output.",
+    "The earlier 70/15/15 run produced different metrics and should not be treated as this run's result.",
+    "The trained checkpoint and full per-class test report are in the Kaggle output ZIP, not this source repository."
+  ]
+}

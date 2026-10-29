@@ -64,4 +64,10 @@ For the guided Google Colab flow, open `cnn_colab.ipynb`. It mounts Drive, check
 - `training_history.json`: per-epoch metrics
 - `split_summary.json`: exact total and per-class train/validation/test counts, plus the random seed
 
-The test split is evaluated once at the end. Use validation metrics when adjusting training settings. Results from this 60/20/20 split are not directly comparable to the earlier 70/15/15 run because the images in the validation and test sets have changed. Re-run training to produce metrics for the new split.
+The test split is evaluated once at the end. Use validation metrics when adjusting training settings. Results from the 60/20/20 split are not directly comparable to the earlier 70/15/15 run because the images in the validation and test sets have changed. The latest completed 60/20/20 run is recorded below.
+
+## Latest completed CNN run
+
+The latest Kaggle run used the 60/20/20 split and completed all 15 epochs on a Tesla T4 with automatic mixed precision. It used 1,024 training images, 341 validation images, and 341 test images. The best validation macro F1 was 0.995 at epoch 12. Final test accuracy was **0.974 (97.4%)** and test macro F1 was **0.972 (97.2%)**.
+
+The recorded run summary and per-epoch training/validation metrics are in [`results/cnn_60_20_20_summary.json`](results/cnn_60_20_20_summary.json) and [`results/cnn_60_20_20_training_history.json`](results/cnn_60_20_20_training_history.json). These files record the aggregate metrics visible in the Kaggle run; the complete per-class test report and trained checkpoint remain in the Kaggle output ZIP.

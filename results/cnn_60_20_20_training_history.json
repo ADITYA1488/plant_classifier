@@ -1,0 +1,17 @@
+[
+  {"epoch": 1, "train_loss": 0.9545, "train_accuracy": 0.662, "train_macro_f1": 0.664, "val_loss": 0.3116, "val_accuracy": 0.918, "val_macro_f1": 0.909},
+  {"epoch": 2, "train_loss": 0.1754, "train_accuracy": 0.963, "train_macro_f1": 0.961, "val_loss": 0.1625, "val_accuracy": 0.959, "val_macro_f1": 0.955},
+  {"epoch": 3, "train_loss": 0.0729, "train_accuracy": 0.986, "train_macro_f1": 0.987, "val_loss": 0.1077, "val_accuracy": 0.977, "val_macro_f1": 0.975},
+  {"epoch": 4, "train_loss": 0.0383, "train_accuracy": 0.996, "train_macro_f1": 0.996, "val_loss": 0.0708, "val_accuracy": 0.979, "val_macro_f1": 0.975},
+  {"epoch": 5, "train_loss": 0.0265, "train_accuracy": 0.998, "train_macro_f1": 0.999, "val_loss": 0.0656, "val_accuracy": 0.982, "val_macro_f1": 0.979},
+  {"epoch": 6, "train_loss": 0.0133, "train_accuracy": 0.999, "train_macro_f1": 0.999, "val_loss": 0.0544, "val_accuracy": 0.985, "val_macro_f1": 0.984},
+  {"epoch": 7, "train_loss": 0.0195, "train_accuracy": 0.998, "train_macro_f1": 0.998, "val_loss": 0.0705, "val_accuracy": 0.974, "val_macro_f1": 0.974},
+  {"epoch": 8, "train_loss": 0.0157, "train_accuracy": 0.998, "train_macro_f1": 0.998, "val_loss": 0.0512, "val_accuracy": 0.988, "val_macro_f1": 0.987},
+  {"epoch": 9, "train_loss": 0.0124, "train_accuracy": 0.999, "train_macro_f1": 0.999, "val_loss": 0.0469, "val_accuracy": 0.985, "val_macro_f1": 0.983},
+  {"epoch": 10, "train_loss": 0.0083, "train_accuracy": 1.0, "train_macro_f1": 1.0, "val_loss": 0.0391, "val_accuracy": 0.991, "val_macro_f1": 0.991},
+  {"epoch": 11, "train_loss": 0.0135, "train_accuracy": 0.998, "train_macro_f1": 0.999, "val_loss": 0.0351, "val_accuracy": 0.991, "val_macro_f1": 0.991},
+  {"epoch": 12, "train_loss": 0.0071, "train_accuracy": 0.999, "train_macro_f1": 0.999, "val_loss": 0.0388, "val_accuracy": 0.997, "val_macro_f1": 0.995},
+  {"epoch": 13, "train_loss": 0.0068, "train_accuracy": 0.999, "train_macro_f1": 0.999, "val_loss": 0.0372, "val_accuracy": 0.991, "val_macro_f1": 0.988},
+  {"epoch": 14, "train_loss": 0.005, "train_accuracy": 1.0, "train_macro_f1": 1.0, "val_loss": 0.0322, "val_accuracy": 0.994, "val_macro_f1": 0.992},
+  {"epoch": 15, "train_loss": 0.0051, "train_accuracy": 1.0, "train_macro_f1": 1.0, "val_loss": 0.0347, "val_accuracy": 0.991, "val_macro_f1": 0.989}
+]
