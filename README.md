@@ -39,14 +39,42 @@ Folder names become the model's class labels. Spaces and capitalization are supp
 
 ## Local run
 
-Install a PyTorch build appropriate for your system from the [official PyTorch install selector](https://pytorch.org/get-started/locally/), then install the remaining requirements:
+Install a PyTorch build appropriate for your system from the [official PyTorch install selector](https://pytorch.org/get-started/locally/), then install the supporting libraries:
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install scikit-learn matplotlib pandas
 python train_cnn.py --data-dir "C:/Playground/plant_classifier/images" --output-dir outputs/cnn
 ```
 
 The script automatically selects CUDA when PyTorch detects an available NVIDIA GPU, and enables automatic mixed precision on CUDA. Otherwise, it uses the CPU.
+
+## Open and use the project in PyCharm
+
+For a Git-connected PyCharm project, choose **Get from VCS** (or **File → New Project from Version Control**), paste `https://github.com/ADITYA1488/plant_classifier.git`, and clone it to a folder such as `C:/Playground/plant_classifier_github`. The image dataset is intentionally not stored on GitHub. Keep using the existing local images at `C:/Playground/plant_classifier/images` or copy them into the cloned project's ignored `images` folder.
+
+In PyCharm, set the project interpreter to a virtual environment. Install a CUDA-enabled PyTorch/TorchVision build using the [official PyTorch selector](https://pytorch.org/get-started/locally/), then install the other libraries in the PyCharm terminal:
+
+```bash
+python -m pip install scikit-learn matplotlib pandas
+```
+
+To **view the recorded Kaggle run without training again**, open the PyCharm terminal at the repository root and run:
+
+```bash
+python view_results.py
+```
+
+It reads the committed run summary and epoch history, prints the recorded scores, displays charts, and saves `results/results_dashboard.png`. The plotted charts include loss, accuracy, and macro F1 by epoch. If you have a complete training output folder with the test report and confusion matrix, point the viewer to that folder:
+
+```bash
+python view_results.py --results-dir outputs/cnn_60_20_20
+```
+
+To train a new local run on an RTX 3050 with 4 GB of VRAM, use a smaller batch size:
+
+```bash
+python train_cnn.py --data-dir "C:/Playground/plant_classifier/images" --output-dir outputs/cnn_60_20_20 --epochs 15 --batch-size 8
+```
 
 ## Kaggle or Colab
 
@@ -63,6 +91,7 @@ For the guided Google Colab flow, open `cnn_colab.ipynb`. It mounts Drive, check
 - `test_confusion_matrix.csv`: test confusion matrix
 - `training_history.json`: per-epoch metrics
 - `split_summary.json`: exact total and per-class train/validation/test counts, plus the random seed
+- `results_dashboard.png`: plots created by `view_results.py`
 
 The test split is evaluated once at the end. Use validation metrics when adjusting training settings. Results from the 60/20/20 split are not directly comparable to the earlier 70/15/15 run because the images in the validation and test sets have changed. The latest completed 60/20/20 run is recorded below.
 
