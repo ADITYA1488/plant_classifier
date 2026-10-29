@@ -20,7 +20,7 @@ IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
 
 
 def split_indices(targets: list[int], seed: int) -> tuple[list[int], list[int], list[int]]:
-    """Make deterministic, per-class 70/15/15 train/validation/test splits."""
+    """Make deterministic, per-class 60/20/20 train/validation/test splits."""
     rng = random.Random(seed)
     grouped: dict[int, list[int]] = {}
     for index, label in enumerate(targets):
@@ -33,8 +33,8 @@ def split_indices(targets: list[int], seed: int) -> tuple[list[int], list[int], 
         if len(indices) < 3:
             raise ValueError(f"Class index {label} has fewer than 3 images; need at least 3 to split.")
         rng.shuffle(indices)
-        n_test = max(1, round(len(indices) * 0.15))
-        n_val = max(1, round(len(indices) * 0.15))
+        n_test = max(1, round(len(indices) * 0.20))
+        n_val = max(1, round(len(indices) * 0.20))
         while n_test + n_val >= len(indices):
             if n_test >= n_val:
                 n_test -= 1
@@ -142,6 +142,18 @@ def main():
         raise RuntimeError("Training and evaluation class labels do not match.")
 
     train_indices, val_indices, test_indices = split_indices(train_base.targets, args.seed)
+    split_counts = {
+        "train": Counter(train_base.targets[i] for i in train_indices),
+        "validation": Counter(train_base.targets[i] for i in val_indices),
+        "test": Counter(train_base.targets[i] for i in test_indices),
+    }
+    split_summary = {
+        class_name: {
+            split_name: int(counts[class_index])
+            for split_name, counts in split_counts.items()
+        }
+        for class_index, class_name in enumerate(train_base.classes)
+    }
     train_set = Subset(train_base, train_indices)
     val_set = Subset(eval_base, val_indices)
     test_set = Subset(eval_base, test_indices)
@@ -220,6 +232,7 @@ def main():
                 "classes": train_base.classes,
                 "image_size": args.image_size,
                 "seed": args.seed,
+                "split": "60/20/20",
                 "epoch": epoch,
                 "val_macro_f1": val_f1,
             }, checkpoint_path)
@@ -249,10 +262,24 @@ def main():
             writer.writerow([class_name, *row.tolist()])
     (args.output_dir / "test_report.json").write_text(
         json.dumps({
+            "split": "60/20/20",
+            "seed": args.seed,
             "test_loss": test_loss,
             "test_accuracy": test_acc,
             "test_macro_f1": test_f1,
             "class_report": report,
+        }, indent=2),
+        encoding="utf-8",
+    )
+    (args.output_dir / "split_summary.json").write_text(
+        json.dumps({
+            "split": "60/20/20",
+            "seed": args.seed,
+            "total_images": len(train_base),
+            "train_images": len(train_indices),
+            "validation_images": len(val_indices),
+            "test_images": len(test_indices),
+            "per_class": split_summary,
         }, indent=2),
         encoding="utf-8",
     )

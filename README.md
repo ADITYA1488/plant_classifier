@@ -1,6 +1,6 @@
 # Plant classifier: CNN stage
 
-This project starts with a pretrained ResNet-18 CNN in PyTorch. It reads one folder per plant class, makes a reproducible per-class 70/15/15 train/validation/test split, uses training-only augmentation and class-weighted loss, and saves the best validation checkpoint plus test metrics.
+This project starts with a pretrained ResNet-18 CNN in PyTorch. It reads one folder per plant class, makes a reproducible, stratified 60/20/20 train/validation/test split, uses training-only augmentation and class-weighted loss, and saves the best validation checkpoint plus test metrics. The split is calculated separately within each class so each class is represented in all three sets. Counts can differ slightly from the exact percentages because images are indivisible; `split_summary.json` records the actual counts for each run.
 
 The current source folders contain 1,706 JPEG photos:
 
@@ -62,5 +62,6 @@ For the guided Google Colab flow, open `cnn_colab.ipynb`. It mounts Drive, check
 - `test_report.json`: overall and per-class test metrics
 - `test_confusion_matrix.csv`: test confusion matrix
 - `training_history.json`: per-epoch metrics
+- `split_summary.json`: exact total and per-class train/validation/test counts, plus the random seed
 
-The test split is evaluated once at the end. Use validation metrics when adjusting training settings.
+The test split is evaluated once at the end. Use validation metrics when adjusting training settings. Results from this 60/20/20 split are not directly comparable to the earlier 70/15/15 run because the images in the validation and test sets have changed. Re-run training to produce metrics for the new split.
