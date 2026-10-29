@@ -22,12 +22,18 @@ def main() -> None:
         default=Path("results"),
         help="Folder with the recorded results or a training output folder.",
     )
+    parser.add_argument(
+        "--save-only",
+        action="store_true",
+        help="Save the dashboard without opening a plot window.",
+    )
     args = parser.parse_args()
     results_dir = args.results_dir.expanduser().resolve()
 
     report_path = results_dir / "test_report.json"
     summary_path = results_dir / "cnn_60_20_20_summary.json"
     history_path = results_dir / "training_history.json"
+    split_path = results_dir / "split_summary.json"
     if not history_path.is_file():
         history_path = results_dir / "cnn_60_20_20_training_history.json"
     matrix_path = results_dir / "test_confusion_matrix.csv"
@@ -39,6 +45,7 @@ def main() -> None:
 
     report = load_json(report_path) if report_path.is_file() else None
     summary = load_json(summary_path) if summary_path.is_file() else None
+    split_summary = load_json(split_path) if split_path.is_file() else None
     if not isinstance(summary, dict):
         summary = {}
     if report is not None and not isinstance(report, dict):
@@ -59,6 +66,13 @@ def main() -> None:
             f"train={summary['train_images']}, "
             f"validation={summary['validation_images']}, "
             f"test={summary['test_images']}"
+        )
+    elif split_summary:
+        print(
+            "Images: "
+            f"train={split_summary['train_images']}, "
+            f"validation={split_summary['validation_images']}, "
+            f"test={split_summary['test_images']}"
         )
 
     class_report = report.get("class_report", {}) if report else {}
@@ -137,7 +151,10 @@ def main() -> None:
     plot_path = results_dir / "results_dashboard.png"
     fig.savefig(plot_path, dpi=160, bbox_inches="tight")
     print(f"\nSaved visual dashboard: {plot_path}")
-    plt.show()
+    if args.save_only:
+        plt.close(fig)
+    else:
+        plt.show()
 
 
 if __name__ == "__main__":

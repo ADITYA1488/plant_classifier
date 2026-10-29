@@ -97,6 +97,12 @@ The test split is evaluated once at the end. Use validation metrics when adjusti
 
 ## Latest completed CNN run
 
-The latest Kaggle run used the 60/20/20 split and completed all 15 epochs on a Tesla T4 with automatic mixed precision. It used 1,024 training images, 341 validation images, and 341 test images. The best validation macro F1 was 0.995 at epoch 12. Final test accuracy was **0.974 (97.4%)** and test macro F1 was **0.972 (97.2%)**.
+The latest [Kaggle run](https://www.kaggle.com/code/adityashrinet/notebook0f7248d0eb/edit/run/363345110) used the 60/20/20 split and completed all 15 epochs on a Tesla T4 with automatic mixed precision. It used 1,024 training images, 341 validation images, and 341 test images. The best validation macro F1 was 0.995 at epoch 12. Final test accuracy was **0.974 (97.4%)** and test macro F1 was **0.972 (97.2%)**.
 
 The recorded run summary and per-epoch training/validation metrics are in [`results/cnn_60_20_20_summary.json`](results/cnn_60_20_20_summary.json) and [`results/cnn_60_20_20_training_history.json`](results/cnn_60_20_20_training_history.json). These files record the aggregate metrics visible in the Kaggle run; the complete per-class test report and trained checkpoint remain in the Kaggle output ZIP.
+
+### Training and evaluation charts
+
+The chart below is generated from the committed Kaggle training history and summary. It shows loss, accuracy, and macro F1 over epochs, plus the recorded test scores.
+
+![CNN 60/20/20 training and evaluation dashboard](results/results_dashboard.png)

@@ -2,6 +2,7 @@
   "model": "torchvision ResNet-18 fine-tuned from ImageNet weights",
   "framework": "PyTorch",
   "source": "Kaggle training run",
+  "kaggle_run_url": "https://www.kaggle.com/code/adityashrinet/notebook0f7248d0eb/edit/run/363345110",
   "split": "60/20/20",
   "seed": 42,
   "device": "NVIDIA Tesla T4",
