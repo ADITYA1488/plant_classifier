@@ -84,6 +84,8 @@ The training script uses ImageNet-pretrained ResNet-18 weights by default. The r
 
 For the guided Google Colab flow, open `cnn_colab.ipynb`. It mounts Drive, checks the GPU, checks for all 10 class folders, copies the dataset to the runtime disk, runs the training script, and saves results back to Drive. Set the repository URL in the notebook after the GitHub repository exists.
 
+For a **single Kaggle file containing both the notebook workflow and the full trainer source**, use [`kaggle_train_all_in_one.ipynb`](kaggle_train_all_in_one.ipynb). It includes GPU and dataset checks, the complete `train_cnn.py` source, the 60/20/20 training command, report and chart display cells, and ZIP packaging. Attach the existing Kaggle image dataset, enable GPU and Internet, then run the notebook top to bottom. To refresh the embedded trainer after editing `train_cnn.py`, run `python build_kaggle_notebook.py` from the project root.
+
 ## Outputs
 
 - `best_resnet18.pt`: checkpoint selected by validation macro F1
